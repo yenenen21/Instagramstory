@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jennifer Lenz Instagram Story</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(to bottom right, #ff0000, #ff006a);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .phone-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #000;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .status-bar {
+            height: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .status-bar .time {
+            font-size: 14px;
+        }
+        
+        .status-bar .icons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .status-bar .signal, .status-bar .wifi, .status-bar .battery {
+            font-size: 12px;
+        }
+        
+        .story-content {
+            height: calc(100% - 44px);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Hintergrund-Bild */
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+       
+        .story-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.3) 100%);
+            z-index: 2;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            gap: 10px;
+            position: relative;
+            z-index: 3;
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid white;
+            overflow: hidden; 
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+        
+        .username {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .post-time {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .close-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 3;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .hashtag-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            width: 150px;
+            margin: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 3;
+        }
+        
+        .hashtag {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .reactions {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .reaction-avatars {
+            display: flex;
+        }
+        
+        .reaction-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            border: 2px solid white;
+            margin-right: -8px;
+            overflow: hidden; 
+        }
+        
+        .reaction-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .reaction-count {
+            color: #888;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .add-yours {
+            display: flex;
+            align-items: center;
+            background-color: #f1f1f1;
+            padding: 8px 12px;
+            border-radius: 8px;
+            gap: 6px;
+        }
+        
+        .camera-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #0095f6;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .add-yours-text {
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .story-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            z-index: 3;
+        }
+        
+        .send-message {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 25px;
+            color: white;
+            padding: 10px 20px;
+            width: 75%;
+            text-align: center;
+        }
+        
+        .direct-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 16px;
+            margin-right: 5px;
+        }
+        
+        
+        .sticker-text {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #ff2d55;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 3;
+            letter-spacing: 0.5px;
+            border: 2px solid #ff2d55;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="status-bar">
+            <div class="time">12:34</div>
+            <div class="icons">
+                <div class="signal">●●●●</div>
+                <div class="wifi">📶</div>
+                <div class="battery">🔋</div>
+            </div>
+        </div>
+        
+        <div class="story-content">
+            
+            <img class="background-image" src="Links/Foto_1.jpg" alt="Hintergrundbild">
+            
+         
+            <div class="story-overlay"></div>
+            
+            <div class="user-info">
+                <div class="user-avatar">
+                    
+                    <img src="Links/Profilbild.png" alt="Profilbild">
+                </div>
+                <span class="username">vorwerk_podemus</span>
+                <span class="post-time">3h</span>
+            </div>
+            
+            <div class="close-button">✕</div>
+            
+            
+            <div class="sticker-text">Neue Sticker erhältlich 😍</div>
+            
+            <div class="hashtag-card">
+                <div class="hashtag">#Stadt_Euter</div>
+                <div class="reactions">
+                    <div class="reaction-avatars">
+                        <div class="reaction-avatar">
+                            <img src="Links/jana-niggeloh-V2QyWrQnNKw-unsplash.jpg" alt="Reaktions-Profilbild 1">
+                        </div>
+                        <div class="reaction-avatar">
+                            <img src="Links/laura-adai-LdZQaNADsX8-unsplash.jpg" alt="Reaktions-Profilbild 2">
+                        </div>
+                        <div class="reaction-avatar">
+                            <img src="Links/jakob-cotton-00z6-wRHEYU-unsplash.jpg" alt="Reaktions-Profilbild 3">
+                        </div>
+                        <div class="reaction-avatar">
+                            <img src="Links/logo.png" alt="Reaktions-Profilbild 4">
+                        </div>
+                    </div>
+                    <span class="reaction-count">+20</span>
+                </div>
+                <div class="add-yours">
+                    <div class="camera-icon">📷</div>
+                    <span class="add-yours-text">Add Yours</span>
+                </div>
+            </div>
+            
+            <div class="story-footer">
+                <div class="send-message">Send message</div>
+                <div class="direct-icon">▶</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
